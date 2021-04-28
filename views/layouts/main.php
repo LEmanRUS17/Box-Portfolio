@@ -2,6 +2,7 @@
 
 use app\assets\AppAsset;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -15,8 +16,7 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
-
-    <link rel="icon" href="img/fav.png" type="image/x-icon">
+    <link rel="icon" href="/web/favicon.ico">
 
     <!-- modernizr -->
     <!--<script src="js/modernizr.js"></script>-->
@@ -48,7 +48,7 @@ AppAsset::register($this);
         <!-- box header -->
         <header class="box-header">
             <div class="box-logo">
-                <a href="<?= \yii\helpers\Url::home() ?>"><img src="img/logo.png" width="80" alt="Logo"></a>
+                <a href="<?= Url::home() ?>"><img src="/web/img/logo.png" width="80" alt="Logo"></a>
             </div>
             <!-- box-nav -->
             <a class="box-primary-nav-trigger" href="#0">
@@ -80,9 +80,7 @@ AppAsset::register($this);
             </ul>
         </nav>
         <!-- end nav -->
-
         <?= $this->render('/partials/boxIntro.php') ?>
-
     </div>
 
     <?= $content ?>

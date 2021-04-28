@@ -1,16 +1,16 @@
 <?php
 
 $params = require __DIR__ . '/params.php';
-$db = require __DIR__ . '/db.php';
+$db     = require __DIR__ . '/db.php';
 
 $config = [
-    'id' => 'basic',
-    'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
-    'defaultRoute' => 'home/index', // Маршрут по умолчанию
-    'language' => 'ru-RU',          // Установка основного языка
-    'name' => 'Portfolio',          // Название сайта
-    'layout' => 'main',             // Определение шаблона по умолчанию
+    'id'           => 'basic',
+    'basePath'     => dirname(__DIR__),
+    'bootstrap'    => ['log'],
+    'defaultRoute' => 'home/index',     // Маршрут по умолчанию
+    'language'     => 'ru-RU',          // Установка основного языка
+    'name'         => 'Portfolio',      // Название сайта
+    'layout'       => 'main',           // Определение шаблона по умолчанию
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -41,20 +41,20 @@ $config = [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
                 [
-                    'class' => 'yii\log\FileTarget',
+                    'class'  => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
             ],
         ],
         'db' => $db,
-        /*
+
         'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
+            'enablePrettyUrl'     => true,
+            'showScriptName'      => false,
+            'enableStrictParsing' => false,
             'rules' => [
             ],
         ],
-        */
     ],
     'params' => $params,
 ];
