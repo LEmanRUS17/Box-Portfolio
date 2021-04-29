@@ -63,7 +63,7 @@ AppAsset::register($this);
             <ul class="box-primary-nav">
                 <li class="box-label">Обо мне</li>
 
-                <li><a href="index.html">Главная</a> <i class="ion-ios-circle-filled color"></i></li>
+                <li><a href="#">Главная</a> <i class="ion-ios-circle-filled color"></i></li>
                 <li><a href="about.html">Обо мне</a></li>
                 <li><a href="services.html">Сервисы </a></li>
                 <li><a href="portfolio.html">Портфолио </a></li>
@@ -80,7 +80,7 @@ AppAsset::register($this);
             </ul>
         </nav>
         <!-- end nav -->
-        <?= $this->render('/partials/boxIntro.php') ?>
+        
     </div>
 
     <?= $content ?>

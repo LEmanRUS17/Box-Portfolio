@@ -1,3 +1,5 @@
+<?= $this->render('/partials/boxIntro.php') ?>
+
 <!-- portfolio div -->
 <div class="portfolio-div">
     <div class="portfolio">

@@ -11,6 +11,12 @@ $config = [
     'language'     => 'ru-RU',          // Установка основного языка
     'name'         => 'Portfolio',      // Название сайта
     'layout'       => 'main',           // Определение шаблона по умолчанию
+    'modules' => [
+        'admin' => [
+            'class' => 'app\modules\admin\Module',
+            'layout' => 'admin',
+        ],
+    ],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -19,6 +25,7 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'BDdWIlNDSjy9O3fJy68_6YZ2AoQkLcte',
+            'baseUrl' => '',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -47,16 +54,17 @@ $config = [
             ],
         ],
         'db' => $db,
-
         'urlManager' => [
             'enablePrettyUrl'     => true,
             'showScriptName'      => false,
             'enableStrictParsing' => false,
             'rules' => [
+                'index' => 'home',
             ],
         ],
     ],
     'params' => $params,
+
 ];
 
 if (YII_ENV_DEV) {
