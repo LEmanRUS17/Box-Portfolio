@@ -8,6 +8,7 @@ use app\models\ProjectSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ProjectController implements the CRUD actions for Project model.
@@ -93,6 +94,15 @@ class ProjectController extends Controller
         $this->view->title = 'Изменить проект: '. $model->title; // Заголовок сайта
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            $model->image = UploadedFile::getInstance($model, 'image');
+            if( $model->image ){
+                $model->upload();
+            }
+            unset($model->image);
+            $model->gallery = UploadedFile::getInstances($model, 'gallery');
+            $model->uploadGallery();
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

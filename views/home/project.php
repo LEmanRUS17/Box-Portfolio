@@ -1,27 +1,31 @@
 <!-- top-bar -->
 <div class="top-bar">
-    <h1>project title</h1>
+    <h1><?= $project->title ?></h1>
     <p><a href="#">Home</a> / <a href="#">portfolio</a> / project title</p>
 </div>
 <!-- end top-bar -->
 
+<?php
+    $mainImg = $project->getImage();
+    $gallery = $project->getImages();
+?>
+
 <!-- main-container -->
 <div class="container main-container">
-    <div class="col-md-12">
-        <img src="http://placehold.it/1920x1080" alt="" class="img-responsive" />
+    <div class="col-md-12 container-center">
+        <?= yii\helpers\Html::img($mainImg->getUrl(), [/*'alt' => $project->name,*/ 'class' => 'img-responsive']) ?>
+        <!--<img src="http://placehold.it/1920x1080" alt="" class="img-responsive" />-->
         <div class="h-30"></div>
     </div>
 
     <div class="col-md-12">
-        <h3 class="text-uppercase">project title</h3>
-        <h5>Creative & Lorem ipsum dolor sit amet</h5>
+        <h3 class="text-uppercase"><?= $project->title ?></h3>
+        <h5><?= $project->description ?></h5>
         <div class="h-30"></div>
     </div>
 
     <div class="col-md-9">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliter enim nosmet ipsos nosse non possumus. Inscite autem medicinae et gubernationis ultimum cum ultimo sapientiae comparatur. Tecum optime, deinde etiam cum mediocri amico. Et nemo nimium beatus est; Ac ne plura complectar-sunt enim innumerabilia-, bene laudata virtus voluptatis aditus ultimum cum ultimo sapientiae Et nemo nimium beatus est </p>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliter enim nosmet ipsos nosse non possumus. Inscite autem medicinae et gubernationis ultimum cum ultimo sapientiae comparatur. Tecum optime, deinde etiam cum mediocri amico. Et nemo nimium beatus est; Ac ne plura complectar-sunt enim innumerabilia </p>
+        <?= $project->content ?>
     </div>
 
     <div class="col-md-3">

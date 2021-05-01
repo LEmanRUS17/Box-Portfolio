@@ -11,13 +11,15 @@ use Yii;
  * @property string|null $title
  * @property string|null $description
  * @property string|null $content
- * @property string|null $image
  * @property int|null $viewed
  *
  * @property ProjectCategory[] $projectCategories
  */
 class Project extends \yii\db\ActiveRecord
 {
+    public $image;
+    public $gallery;
+
     /**
      * {@inheritdoc}
      */
@@ -35,7 +37,9 @@ class Project extends \yii\db\ActiveRecord
             [['description'], 'string'],
             [['content'], 'safe'],
             [['viewed'], 'integer'],
-            [['title', 'image'], 'string', 'max' => 255],
+            [['title'], 'string', 'max' => 255],
+            [['image'], 'file', 'extensions' => 'png, jpg'],
+            [['gallery'], 'file', 'extensions' => 'png, jpg', 'maxFiles' => 8],
         ];
     }
 
@@ -45,12 +49,13 @@ class Project extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID Проекта',
-            'title' => 'Заголовок',
+            'id'          => 'ID Проекта',
+            'title'       => 'Заголовок',
             'description' => 'Описание',
-            'content' => 'Содержимое',
-            'image' => 'Титульное изображение',
-            'viewed' => 'Кол. просмотров',
+            'content'     => 'Содержимое',
+            'image'       => 'Титульное изображение',
+            'gallery'     => 'Галерея',
+            'viewed'      => 'Кол. просмотров',
         ];
     }
 
@@ -63,4 +68,39 @@ class Project extends \yii\db\ActiveRecord
     {
         return $this->hasMany(ProjectCategory::className(), ['category_id' => 'id']);
     }
+
+    public function behaviors()
+    {
+        return [
+            'image' => [
+                'class' => 'rico\yii2images\behaviors\ImageBehave',
+            ]
+        ];
+    }
+
+    public function upload(){
+        if ($this->validate()) {
+            $path = 'upload/store/' . $this->image->baseName . '.' . $this->image->extension;
+            $this->image->saveAs($path);
+            $this->attachImage($path, true);
+            unlink($path); // Удаление картинки
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function uploadGallery(){
+        if ($this->validate()) {
+            foreach($this->gallery as $file) {
+                $path = 'upload/store/' . $file->baseName . '.' . $file->extension;
+                $file->saveAs($path);
+                $this->attachImage($path);
+                unlink($path); // Удаление картинки                
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }    
 }

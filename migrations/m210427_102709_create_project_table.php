@@ -17,7 +17,6 @@ class m210427_102709_create_project_table extends Migration
             'title'       => $this->string(),     // Заголовок
             'description' => $this->text(),       // Описание
             'content'     => $this->text(),       // Содержимое
-            'image'       => $this->string(),     // Изображение
             'viewed'      => $this->integer(),    // Просмотры
         ]);
     }
